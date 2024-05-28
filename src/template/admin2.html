@@ -1,0 +1,125 @@
+{% include 'navegacion2.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/src/static/img/logosp.ico">
+    <title>SpotReserve - reservas</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .section {
+            flex: 1;
+            padding: 20px;
+            border-right: 1px solid #ccc; 
+        }
+        .section:last-child {
+            border-right: none; 
+        }
+        .section h2 {
+            margin-top: 0; 
+        }
+        .reservas-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .reserva-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .btn-verde {
+            background-color: green;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-rojo {
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Bienvenido {{ usuarios['username'] }} a tus reservas</h2>
+    <div class="container">
+        <div class="section">
+            <h2>Información de tu bar</h2>
+            <br>
+            <!-- Aquí puedes agregar el contenido relacionado con la información de tu bar -->
+        </div>
+        <div class="section">
+            <center><h2>Tus reservas</h2></center>
+            <br>
+            <ul class="reservas-list">
+                {% if usuarios %}
+                {% for reserva in usuarios %}
+                    <li class="reserva-item">
+                        <strong>Restaurante:</strong> {{ reserva['nombreLocal'] }}<br>
+                        <strong>Fecha de reserva:</strong> {{ reserva['fecha_reserva'] }}<br>
+                        <strong>Hora de reserva:</strong> {{ reserva['hora_reserva'] }}<br>
+                        <button class="btn-verde" onclick="aceptarReserva('{{ reserva.id_reserva }}', '{{ reserva.nombreLocal }}')">Confirmar</button>
+                        <button class="btn-rojo" onclick="cancelarReserva('{{ reserva.id_reserva }}')">Cancelar</button>
+                    </li>
+                    {% endfor %}
+                {% else %}
+                    <p>No tienes reservas.</p>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function aceptarReserva(idReserva, nombreLocal) {
+            fetch('/aceptar_reserva', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    nombreLocal: nombreLocal
+                })
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data); // Mostrar respuesta del servidor
+                location.reload(); // Recargar la página después de aceptar la reserva
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    
+        function cancelarReserva(idReserva) {
+            fetch(`/cancelar_reserva/${idReserva}`, {
+                method: 'POST',
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.text();
+                }
+                throw new Error('Network response was not ok.');
+            })
+            .then(data => {
+                alert(data); // Mostrar respuesta del servidor
+                location.reload(); // Recargar la página después de cancelar la reserva
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+
+</body>
+</html>
