@@ -1,0 +1,40 @@
+{% include 'navegacion2.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotreserve - Bares</title>
+    <!-- Incluye Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Bares</h1>
+        <div class="row">
+            {% for bar in bares %}
+            <div class="col-md-4">
+                <div class="card shadow-sm mb-4">
+                    <img src="{{ url_for('static', filename='img/baresejemplo.jpg') }}" class="bd-placeholder-img card-img-top" alt="{{ bar['nombreLocal'] }}">
+                    <div class="card-body">
+                        <p class="card-text">{{ bar['nombreLocal'] }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href="{{ url_for('mostrar_mapa', bar_id=bar['id']) }}" class="btn btn-sm btn-outline-secondary">View</a>
+                                <a href="/obtener_bares" class="btn btn-sm btn-outline-secondary">Reserva aqui</a>
+                            </div>
+                            <small class="text-muted">Registered bar</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Incluye Bootstrap JS y dependencias -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

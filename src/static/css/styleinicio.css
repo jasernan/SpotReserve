@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0; 
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    background-color: #ffffff; 
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+}
+
+.menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #789dce; 
+}
+
+.logo {
+    color: #FFFDFC;
+    font-size: 25px;
+    font-weight: 1000;
+    position: static; 
+}
+
+.menu .navbar ul li {
+    position: relative;
+    float: left;
+    margin-right: 30px;
+}
+
+.menu .navbar ul li a {
+    font-size: 18px;
+    padding: relative;
+    color: #FFFDFC;
+    font-weight: 600;
+}
+
+.menu .navbar ul li a:hover { 
+    color: #1B41DA;    
+}
+
+#menu {
+    display: none;
+}
+
+.menu-icono {
+    width: 25px;
+    position: absolute;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    z-index: 2; 
+}
+
+.menu label {
+    cursor: pointer;
+    display: none;
+}
+
+.section {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.testimonial {
+    flex-basis: 48%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.testimonial p {
+    margin-bottom: 10px;
+}
+
+.features {
+    background-color: #f8f8f8;
+    padding: 80px 0;
+}
+
+.features h2 {
+    font-size: 28px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.feature {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.feature img {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+.feature h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.feature p {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.footer {
+    background-color: #789dce;
+    color: #fff;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.social img {
+    width: 30px;
+    margin-right: 10px;
+}
+
+.info {
+    margin-top: 20px;
+}
+
+.info p {
+    margin-bottom: 10px;
+}
+
+.nav-container {
+    background-color: #789dce; 
+    padding: 10px; 
+    width: 97%; 
+    margin: 0 auto; 
+    border-radius: 8px; 
+}
